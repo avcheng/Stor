@@ -1,0 +1,6 @@
+framework module Pods_Stor {
+  umbrella header "Pods-Stor-umbrella.h"
+
+  export *
+  module * { export * }
+}
