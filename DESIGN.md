@@ -1,3 +1,23 @@
 # An Overview
 
-Stor was developed using Swift and the cloud storage/data service Firebase. The app was created through the storyboard method, totalling to 10 storyboards.
+Stor was developed using Swift and the cloud storage/data service Firebase. The app was created through the storyboard method, totalling to 10 storyboards. A custom logo was also created for the app.
+
+## Connecting to Firebase
+
+This app was connected to Firebase, utilizing its Authentication, Database, and Storage features. To do this, a `GoogleService-Info.plist` file was inserted into the project, and CocoaPods were created in the project folder to connect it to Firebase. 
+
+## Log-in/Register View Controller (UserLoginViewController.swift)
+
+The UI of the LoginViewController contains two UITextViews, one for the email of the user and one for the password of the user. These were connected using `@IBOutlet` to get the text the users were inputting to those fields. It also contains two UIButtons, one for sign up and one for log in. These were connected using `@IBAction`. When the user clicked "Sign Up", the code would take the text from the two text views and attempt to create a user in Firebase. Firebase would then confirm that the email was actually an email and that the password was greater than 6 characters long. If it was not verified, a `UIAlertController` alert was presented using `present`. If verified, a unique ID was created for the user and uploaded to the Firebase database under a 'users' dictionary. This allowed the user to then try and login. The text was taken from each textView, and then Firebase authentication was once again used to verify the credentials by pulling out each user and comparing their emails and password. If the login was incorrect, a `UIAlertController` alert was presented using `present` and the user would need to try again. If it was verified, a `segue` was activated to present the `Tab Bar View Contoller`
+
+On each of the following viewControllers, a user Authentication method was implemented to make sure they were not logged out by using Firebase's method to check the current user's ID. If it was nil, then the user would be logged out and brought back to this View Controller.
+
+## Tab Bar View Controller (SearchViewController.swift)
+
+The Tab Bar View Controller was created in the storyboard section to control the storyboard to go to either the listings of spaces (starting with `ListingListViewController.swift`), upload a space (starting with `UserAddressViewController.swift`), or profile (`ProfileViewController.swift`) by activating segues to each of them. By default, the code is programmed to go the listings of spaces.
+
+## Listings View Controller (ListingListViewController.swift and ListingViewController.swift)
+
+The `ListingListViewController.swift` was created as a TableViewController called `storageTableView` that showed all the data in the Firebase storage. To get the data, a connection was created to the Firebase database and a custom class `Spaces` was created. Inside were the properties of each space, including `address`, `size`, `price`, `rentedBy` (who rented the space), and `status` (whether it was rented or not). Each storage space and its details was then pulled from Firebase and put into an array called `storageList`. The `numberOfSections` was then used to designate the number of sections as 1, and then the number of cells in the table was returned to be the count of the number of elements in the `storageList`. The `address`, `size`, and `price` were loaded into each cell's text by using the `dequeueReusableCell` for each space inside the `storageList` and setting that space's cell text to a concatentation of those separate strings. 
+
+The cells were then designated to show the storyboard for `ListingViewController.swift` when clicked by creating a segue between the cells and the viewController, which would then load each of the properties into its own `UILabel`s and `UIImageView`s. A `UIButton` was created at the bottom which would toggle between "Rent Now", "Cancel Rent" and also be disabled when "Your Own Space" and "Unavailable" were the options. To do this, the elements of `rentedBy` were compared against the current user's unique ID and the `status` of the rented space was checked to make sure it had been rented. If it was the current user's own space, the button would be disabled and set as "Your Own Space". If it had been rented by someone else, it would be set as "Unavailable". However, if the `rentedBy` value was empty and `status` was false, the user could click the button to rent it or cancel the rent. This would change the `rentedBy` and `status` values in Firebase to the user's id and true respectively when they clicked "Rent Now", or change them to an empty string and false when they clicked "Cancel Rent". Two UIDatePickers were also added but had not implementation in the code and did not affect the Firebase Database.
