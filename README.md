@@ -1,7 +1,7 @@
 # Stor
 An app to sell people's extra space as storage space to other people
 
-Stor is an app that allows people to post their own extra space they have in their homes/apartments/property to sell to other people. To start the app, compile and run in Xcode using a simulator such as the Iphone 11
+Stor is an app that allows people to post their own extra space they have in their homes/apartments/property to sell to other people. To start the app, compile and run in Xcode using a simulator or connect your own phone.
 
 ## Log-in/Register Screen
 
