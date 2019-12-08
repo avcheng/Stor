@@ -27,6 +27,7 @@ class ListingViewController: UIViewController {
     var size = ""
     var rentedBy = ""
     var imageURL = ""
+    var addedBy = ""
     var status = false
     
     let ref = Database.database().reference().child("storage")
@@ -62,6 +63,7 @@ class ListingViewController: UIViewController {
             self.imageURL = results?["image"] as! String
             self.status = results?["status"] as! Bool
             self.rentedBy = results?["rentedBy"] as! String
+            self.addedBy = results?["addedBy"] as! String
 
             self.addressLabel.text = self.address
             self.priceLabel.text = "$" + self.price + "/day"
@@ -80,8 +82,8 @@ class ListingViewController: UIViewController {
                 }
             }
             else {
-                if self.rentedBy == self.userID {
-                    self.rentButton.setTitle("Can't Rent Your Own Space", for: UIControl.State.normal)
+                if self.addedBy == self.userID {
+                    self.rentButton.setTitle("Your Own Space", for: UIControl.State.normal)
                     self.rentButton.isEnabled = false
                 }
                 else {
@@ -99,7 +101,6 @@ class ListingViewController: UIViewController {
                 return
               }
               else {
-                // Data for "images/island.jpg" is returned
                 let image = UIImage(data: data!)
                 self.imageView.image = image
               }

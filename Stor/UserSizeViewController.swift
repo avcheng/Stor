@@ -45,4 +45,12 @@ class UserSizeViewController: UIViewController {
     @IBAction func backButton(_ sender: Any) {
         self.performSegue(withIdentifier: "backtoAddress", sender: sender)
     }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+       if let x = string.rangeOfCharacter(from: NSCharacterSet.decimalDigits) {
+          return true
+       } else {
+          return false
+       }
+    }
 }
