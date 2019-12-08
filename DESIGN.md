@@ -1,4 +1,4 @@
-# An Overview
+# Overview
 
 Stor was developed using Swift and a custom cloud storage/data service Firebase was created to serve as a backend for the app. The app was created through the storyboard method, totalling to 10 storyboards. A custom logo was also created for the app.
 
