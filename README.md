@@ -1,7 +1,7 @@
 # Stor
 An app to sell people's extra space as storage space to other people
 
-Stor is an app that allows people to post their own extra space they have in their homes/apartments/property to sell to other people. To start the app, compile and run in Xcode using a simulator or connect your own phone.
+Stor is an app that allows people to post their own extra space they have in their homes/apartments/property to sell to other people. To start the app, open the `Stor.xcworkspace` (do not open the project file in Xcode, this will prevent it from connecting to Firebase) which should open up the project in Xcode and run and compile it using a simulator or connect your own phone.
 
 ## Log-in/Register Screen
 
